@@ -1,14 +1,12 @@
+from app import routes
 from app.services import create_animes_table, create_db
-from app import views
 from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    create_db()
-    
-    create_animes_table()
+app.register_blueprint(routes.bp)
 
-    views.init_app(app)
-    
-    return app
+create_db()
+
+create_animes_table()
+
